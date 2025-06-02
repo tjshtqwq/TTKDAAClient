@@ -19,7 +19,8 @@ prefix: "&b&lTTKDAA&f "
 # %check% 检查名称
 # %complex% 检查复杂类型
 # %prefix% 前缀
-alert-message: "%prefix% &b%player% &cis using %check% (&7%complex%&c), VL: %vl%/%maxvl%"
+# (仅alert可用) %message% 违规信息
+alert-message: "%prefix% &b%player% &cis using %check% (&7%complex%&c) : &7%message% &c, VL: %vl%/%maxvl%"
 punish: "kick %player% %prefix% Cheating &c(%check%, VL: %vl%)"
 maxvl: 24
 

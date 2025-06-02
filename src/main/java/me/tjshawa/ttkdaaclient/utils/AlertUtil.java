@@ -18,6 +18,7 @@ public class AlertUtil {
         alert = alert.replaceAll("%check%", check.name);
         alert = alert.replaceAll("%prefix%", TTKDAAClient.prefix);
         alert = alert.replaceAll("%complex%", complex);
+        alert = alert.replaceAll("%message%", message);
         for (Player pp : Bukkit.getOnlinePlayers()) {
             PlayerData data = PlayerDataManager.getPlayerData(pp.getUniqueId());
             if (data != null && data.alert) {
