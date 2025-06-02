@@ -1,2 +1,6 @@
-# TTKDAAClient
-Tatako deep-learning anti aimbot project anticheat-system, open-source.
+# TTKDAA Client
+这个仓库是Tatako的子项目，利用深度学习技术与外挂对抗。
+
+这是一个反作弊客户端，在Bukkit上允许，TTKDAA是一个云技术检测，请你加入QQ群：745840525 获取更多信息。
+
+我们欢迎有好心人可以提交PR完善这个反作弊，甚至让他不止机学，更全面一点。
