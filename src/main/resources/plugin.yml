@@ -1,0 +1,8 @@
+name: TTKDAAClient
+version: '1.0.0'
+main: me.tjshawa.ttkdaaclient.TTKDAAClient
+author: tjshawa
+commands:
+  ttkdaa:
+    description: Commands for TTKDAA.
+    usage: /ttkdaa
