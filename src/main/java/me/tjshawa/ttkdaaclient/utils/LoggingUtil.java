@@ -1,5 +1,6 @@
-package me.tjshawa.ttkdaaclient;
+package me.tjshawa.ttkdaaclient.utils;
 
+import me.tjshawa.ttkdaaclient.TTKDAAClient;
 import org.bukkit.ChatColor;
 
 import java.io.BufferedWriter;

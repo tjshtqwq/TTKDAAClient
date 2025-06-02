@@ -3,8 +3,8 @@ package me.tjshawa.ttkdaaclient.listener;
 import com.github.retrooper.packetevents.event.PacketListener;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.player.User;
-import me.tjshawa.ttkdaaclient.PlayerDataManager;
-import me.tjshawa.ttkdaaclient.types.PlayerData;
+import me.tjshawa.ttkdaaclient.manager.PlayerDataManager;
+import me.tjshawa.ttkdaaclient.utils.types.PlayerData;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;

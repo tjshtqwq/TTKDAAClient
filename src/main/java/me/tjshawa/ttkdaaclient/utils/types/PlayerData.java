@@ -1,8 +1,6 @@
-package me.tjshawa.ttkdaaclient.types;
+package me.tjshawa.ttkdaaclient.utils.types;
 
-import me.tjshawa.ttkdaaclient.PlayerDataManager;
 import me.tjshawa.ttkdaaclient.check.Check;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;

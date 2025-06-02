@@ -1,9 +1,10 @@
-package me.tjshawa.ttkdaaclient;
+package me.tjshawa.ttkdaaclient.manager;
 
+import me.tjshawa.ttkdaaclient.utils.LoggingUtil;
 import me.tjshawa.ttkdaaclient.check.Check;
 import me.tjshawa.ttkdaaclient.check.GenericPacketHandle;
 import me.tjshawa.ttkdaaclient.check.impl.MachineLearningAimBot;
-import me.tjshawa.ttkdaaclient.types.PlayerData;
+import me.tjshawa.ttkdaaclient.utils.types.PlayerData;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,8 @@
-package me.tjshawa.ttkdaaclient;
+package me.tjshawa.ttkdaaclient.manager;
 
+import me.tjshawa.ttkdaaclient.utils.LoggingUtil;
+import me.tjshawa.ttkdaaclient.TTKDAAClient;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;

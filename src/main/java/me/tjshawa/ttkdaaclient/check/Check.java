@@ -1,7 +1,7 @@
 package me.tjshawa.ttkdaaclient.check;
 
-import me.tjshawa.ttkdaaclient.AlertUtil;
-import me.tjshawa.ttkdaaclient.types.PlayerData;
+import me.tjshawa.ttkdaaclient.utils.AlertUtil;
+import me.tjshawa.ttkdaaclient.utils.types.PlayerData;
 import org.bukkit.ChatColor;
 
 public abstract class Check {

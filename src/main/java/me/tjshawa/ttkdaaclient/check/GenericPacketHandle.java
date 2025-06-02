@@ -4,7 +4,7 @@ import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientInteractEntity;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientPlayerFlying;
-import me.tjshawa.ttkdaaclient.types.PlayerData;
+import me.tjshawa.ttkdaaclient.utils.types.PlayerData;
 
 public class GenericPacketHandle extends Check {
     public GenericPacketHandle(PlayerData data) {

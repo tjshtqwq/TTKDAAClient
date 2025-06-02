@@ -1,4 +1,4 @@
-package me.tjshawa.ttkdaaclient;
+package me.tjshawa.ttkdaaclient.utils;
 
 import com.google.gson.Gson;
 

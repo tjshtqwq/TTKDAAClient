@@ -1,7 +1,7 @@
 package me.tjshawa.ttkdaaclient.event;
 
 import me.tjshawa.ttkdaaclient.check.Check;
-import me.tjshawa.ttkdaaclient.types.PlayerData;
+import me.tjshawa.ttkdaaclient.utils.types.PlayerData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;

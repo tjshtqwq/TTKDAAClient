@@ -1,4 +1,4 @@
-package me.tjshawa.ttkdaaclient.types;
+package me.tjshawa.ttkdaaclient.utils.types;
 
 
 import java.util.Collection;

@@ -1,6 +1,8 @@
-package me.tjshawa.ttkdaaclient;
+package me.tjshawa.ttkdaaclient.command;
 
-import me.tjshawa.ttkdaaclient.types.PlayerData;
+import me.tjshawa.ttkdaaclient.TTKDAAClient;
+import me.tjshawa.ttkdaaclient.manager.PlayerDataManager;
+import me.tjshawa.ttkdaaclient.utils.types.PlayerData;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,10 +1,9 @@
 package me.tjshawa.ttkdaaclient.listener;
 
-import me.tjshawa.ttkdaaclient.CheckManager;
-import me.tjshawa.ttkdaaclient.LoggingUtil;
-import me.tjshawa.ttkdaaclient.PlayerDataManager;
-import me.tjshawa.ttkdaaclient.TTKDAAClient;
-import me.tjshawa.ttkdaaclient.types.PlayerData;
+import me.tjshawa.ttkdaaclient.manager.CheckManager;
+import me.tjshawa.ttkdaaclient.utils.LoggingUtil;
+import me.tjshawa.ttkdaaclient.manager.PlayerDataManager;
+import me.tjshawa.ttkdaaclient.utils.types.PlayerData;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;

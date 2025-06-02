@@ -1,7 +1,8 @@
-package me.tjshawa.ttkdaaclient;
+package me.tjshawa.ttkdaaclient.utils;
 
+import me.tjshawa.ttkdaaclient.TTKDAAClient;
 import me.tjshawa.ttkdaaclient.check.Check;
-import me.tjshawa.ttkdaaclient.types.PlayerData;
+import me.tjshawa.ttkdaaclient.utils.types.PlayerData;
 import org.bukkit.Bukkit;
 
 public class PunishUtil {

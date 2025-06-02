@@ -1,16 +1,13 @@
 package me.tjshawa.ttkdaaclient.check.impl;
 
-import com.github.retrooper.packetevents.PacketEvents;
-import com.github.retrooper.packetevents.event.PacketEvent;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
-import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientPlayerFlying;
 import io.github.retrooper.packetevents.util.SpigotConversionUtil;
-import me.tjshawa.ttkdaaclient.AimbotDetector;
+import me.tjshawa.ttkdaaclient.utils.AimbotDetector;
 import me.tjshawa.ttkdaaclient.TTKDAAClient;
 import me.tjshawa.ttkdaaclient.check.Check;
-import me.tjshawa.ttkdaaclient.types.EvictingList;
-import me.tjshawa.ttkdaaclient.types.PlayerData;
+import me.tjshawa.ttkdaaclient.utils.types.EvictingList;
+import me.tjshawa.ttkdaaclient.utils.types.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.util.Vector;
