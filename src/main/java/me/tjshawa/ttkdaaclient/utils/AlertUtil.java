@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 public class AlertUtil {
     public static void alert(String complex, String message, Check check) {
-        String alert = TTKDAAClient.configManager.getString("alert-message", "%prefix% &b%player% &cis using %check% (&7%complex%&c), VL: %vl%/%maxvl%");
+        String alert = TTKDAAClient.configManager.getString("alert-message", "%prefix% &b%player% &cis using %check% (&7%complex%&c) : &7%message% &c, VL: %vl%/%maxvl%");
         alert = alert.replaceAll("%player%", check.data.player.getName());
         alert = alert.replaceAll("%vl%", String.valueOf(check.data.violations));
         alert = alert.replaceAll("%maxvl%", String.valueOf(TTKDAAClient.configManager.getDouble("maxvl", 24d)));
