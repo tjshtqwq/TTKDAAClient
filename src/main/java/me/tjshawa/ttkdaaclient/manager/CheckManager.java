@@ -11,7 +11,8 @@ import java.util.List;
 
 public class CheckManager {
     // 列表所有检测
-    public static List<Class> checks = new ArrayList<>();
+    public static final List<Class<? extends Check>> checks = new ArrayList<>();
+
     static {
         // ### BASE CHECKS ###
         checks.add(GenericPacketHandle.class);
@@ -20,9 +21,9 @@ public class CheckManager {
     }
     public static List<Check> loadChecks(PlayerData data) {
         List<Check> rc = new ArrayList<>();
-        for (Class check : checks) {
+        for (Class<? extends Check> check : checks) {
             try {
-                rc.add((Check) check.getConstructor(PlayerData.class).newInstance(data));
+                rc.add(check.getConstructor(PlayerData.class).newInstance(data));
             } catch (Exception e) {
                 LoggingUtil.logSevere("Failed to load check " + check.getName());
             }

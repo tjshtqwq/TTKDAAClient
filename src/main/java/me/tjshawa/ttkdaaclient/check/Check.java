@@ -22,23 +22,23 @@ public abstract class Check {
     }
 
     public double reduceBuffer(double a) {
-        buffer = Math.max(0, buffer - a);
-        return buffer;
+        this.buffer = Math.max(0, buffer - a);
+        return this.buffer;
     }
 
     public double addBuffer() {
-        buffer++;
+        this.buffer ++;
         return buffer;
     }
 
     public double addBuffer2(double a) {
-        buffer += a;
+        this.buffer += a;
         return buffer;
     }
 
     public void debug(String ms) {
-        if (data.debug) {
-            data.player.sendMessage(ChatColor.translateAlternateColorCodes('&', ms));
+        if (this.data.debug) {
+            this.data.player.sendMessage(ChatColor.translateAlternateColorCodes('&', ms));
         }
     }
 }

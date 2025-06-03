@@ -8,7 +8,8 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerDataManager {
-    public static Map<UUID, PlayerData> playerDataMap = new ConcurrentHashMap<>();
+    private static final Map<UUID, PlayerData> playerDataMap = new ConcurrentHashMap<>();
+
     public static void addPlayerData(UUID uuid, Player pp) {
         playerDataMap.put(uuid, new PlayerData(pp));
     }
@@ -19,5 +20,12 @@ public class PlayerDataManager {
 
     public static void removePlayerData(UUID uuid) {
         playerDataMap.remove(uuid);
+    }
+
+    public static void reloadAllChecks() {
+        playerDataMap.forEach((uuid, playerData) -> {
+            playerData.checks.clear();
+            playerData.checks = CheckManager.loadChecks(playerData);
+        });
     }
 }

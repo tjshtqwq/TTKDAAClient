@@ -34,10 +34,7 @@ public class ConfigManager {
 
         TTKDAAClient.prefix = getString("prefix", "&b&lTTKDAA&f ");
         // 重载所有玩家的检测
-        PlayerDataManager.playerDataMap.forEach((uuid, playerData) -> {
-            playerData.checks.clear();
-            playerData.checks = CheckManager.loadChecks(playerData);
-        });
+        PlayerDataManager.reloadAllChecks();
 
         LoggingUtil.logInfo("&a配置文件重载成功！");
     }
