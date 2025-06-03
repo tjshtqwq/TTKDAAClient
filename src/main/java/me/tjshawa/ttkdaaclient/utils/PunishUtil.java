@@ -15,5 +15,6 @@ public class PunishUtil {
         alert = alert.replaceAll("%prefix%", TTKDAAClient.prefix);
         alert = alert.replaceAll("%complex%", complex);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), alert);
+        data.violations = 0;
     }
 }
