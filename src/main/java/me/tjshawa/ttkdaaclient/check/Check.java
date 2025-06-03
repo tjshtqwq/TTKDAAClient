@@ -1,11 +1,13 @@
 package me.tjshawa.ttkdaaclient.check;
 
+import me.tjshawa.ttkdaaclient.TTKDAAClient;
 import me.tjshawa.ttkdaaclient.utils.AlertUtil;
 import me.tjshawa.ttkdaaclient.utils.types.PlayerData;
 import org.bukkit.ChatColor;
 
 public abstract class Check {
     public String name;
+    public String configName;
     public PlayerData data;
 
     public double buffer;
@@ -40,5 +42,9 @@ public abstract class Check {
         if (data.debug) {
             data.player.sendMessage(ChatColor.translateAlternateColorCodes('&', ms));
         }
+    }
+
+    public boolean isEnabled() {
+        return TTKDAAClient.configManager.getBoolean("checks." + configName + ".enabled", true);
     }
 }

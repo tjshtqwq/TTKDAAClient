@@ -33,6 +33,7 @@ public class MachineLearningAimBot extends Check {
         this.serverToken = TTKDAAClient.configManager.getString("checks.machine-learning-aimbot.server-token");
         this.serverUrl = TTKDAAClient.configManager.getString("checks.machine-learning-aimbot.server-url");
         this.name = "MachineLearningAimBot";
+        this.configName = "machine-learning-aimbot";
     }
 
     EvictingList<Double> pitchesAcc = new EvictingList<>(20);
@@ -44,6 +45,7 @@ public class MachineLearningAimBot extends Check {
 
     @Override
     public void run(Object event) {
+        if (!isEnabled()) return;
         if (event instanceof PacketReceiveEvent) {
             PacketReceiveEvent packetEvent = (PacketReceiveEvent) event;
             if (packetEvent.getPacketType() == PacketType.Play.Client.PLAYER_POSITION_AND_ROTATION) {

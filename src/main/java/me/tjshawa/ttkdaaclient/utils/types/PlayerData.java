@@ -52,5 +52,5 @@ public class PlayerData {
     public boolean lastGround = false;
     public boolean lastLastGround = false;
 
-    public int target;
+    public int target = -1;
 }
