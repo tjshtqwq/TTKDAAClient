@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class AimbotDetector {
@@ -48,7 +49,7 @@ public class AimbotDetector {
 
             // 发送序列化请求
             try (OutputStream os = connection.getOutputStream();
-                 OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8")) {
+                 OutputStreamWriter osw = new OutputStreamWriter(os, StandardCharsets.UTF_8)) {
                 gson.toJson(request, osw);
             }
 
@@ -56,8 +57,7 @@ public class AimbotDetector {
             int status = connection.getResponseCode();
             if (status == 200) {
                 try (InputStream is = connection.getInputStream(); InputStreamReader isr = new InputStreamReader(is, "UTF-8")) {
-                    DetectionResponse response = gson.fromJson(isr, DetectionResponse.class);
-                    return response;
+                    return gson.fromJson(isr, DetectionResponse.class);
                 }
             }
         } catch (Exception e) {
