@@ -33,6 +33,7 @@ ml-backend:
   # only matters when 'ml-backend' is 'djl'
   # the model should be in TensorFlow saved_model format, which is a directory with weights and model structure files saved separately.
   # see also: https://www.tensorflow.org/guide/saved_model?hl=zh-cn
+  # guidelines for converting Keras H5 models to SavedModel format: https://www.tensorflow.org/guide/keras/save_and_serialize?hl=zh-cn
   model-path: "./model" # relative path under the plugin data folder to the model directory (i.e. plugins/TTKDAAClient/{this option})
 
 checks:
