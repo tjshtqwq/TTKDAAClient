@@ -34,8 +34,7 @@ public class GenericPacketHandle extends Check {
                     double x = flying.getLocation().getX();
                     double y = flying.getLocation().getY();
                     double z = flying.getLocation().getZ();
-                    double yaw = flying.getLocation().getYaw();
-                    double pitch = flying.getLocation().getPitch();
+
                     data.lastX = data.x;
                     data.lastY = data.y;
                     data.lastZ = data.z;
@@ -52,7 +51,10 @@ public class GenericPacketHandle extends Check {
                     data.joltX = Math.abs(data.deltaX - data.lastDeltaX);
                     data.joltY = Math.abs(data.deltaY - data.lastDeltaY);
                     data.joltZ = Math.abs(data.deltaZ - data.lastDeltaZ);
-
+                }
+                if (flying.hasRotationChanged()) {
+                    double yaw = flying.getLocation().getYaw();
+                    double pitch = flying.getLocation().getPitch();
                     data.lastYaw = data.yaw;
                     data.lastPitch = data.pitch;
                     data.yaw = yaw;
