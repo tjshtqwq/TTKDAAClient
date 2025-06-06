@@ -26,12 +26,6 @@ public class DJLMLBackend implements MLBackend {
 
     public DJLMLBackend(String modelPath, boolean compatibleMode) {
         try {
-            // zoo/engine provider 由 META-INF/services 定义。虽然插件里有 META-INF/services 文件夹，但Java只认Spigot里的。
-            // 所以只得手动创建。
-//            ModelZoo.registerModelZoo(new DefaultZooProvider());
-//            ModelZoo.registerModelZoo(new TfZooProvider());
-//            Engine.registerEngine(new TfEngineProvider());
-
             model = Criteria.builder()
                     .setTypes(float[][].class, Float.class)
                     .optModelPath(Paths.get(TTKDAAClient.INSTANCE.getDataFolder().getAbsolutePath(), modelPath))
