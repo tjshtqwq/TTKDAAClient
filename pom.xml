@@ -38,6 +38,18 @@
             <goals>
               <goal>shade</goal>
             </goals>
+              <configuration>
+                  <relocations>
+                      <relocation>
+                          <pattern>io.github.retrooper.packetevents</pattern>
+                          <shadedPattern>me.tjshawa.ttkdaaclient.shaded.packetevents</shadedPattern>
+                      </relocation>
+                      <relocation>
+                          <pattern>com.github.retrooper.packetevents</pattern>
+                          <shadedPattern>me.tjshawa.ttkdaaclient.shaded.packetevents</shadedPattern>
+                      </relocation>
+                  </relocations>
+              </configuration>
           </execution>
         </executions>
       </plugin>
