@@ -60,8 +60,16 @@ public final class TTKDAAClient extends JavaPlugin {
 
             LoggingUtil.logInfo("&aUsing remote as ML backend.");
         } else if (backendDescriptor.equals("djl")) {
-            Thread thread = new Thread(() -> mLBackend = new DJLMLBackend(configManager.getString("ml-backend.model-path")));
-            thread.setContextClassLoader(getClass().getClassLoader()); // see: ai.djl.util.Platform.detectPlatform
+            //noinspection ExtractMethodRecommender
+            Thread thread = new Thread(() -> mLBackend = new DJLMLBackend(
+                    configManager.getString("ml-backend.model-path"),
+                    configManager.getBoolean("ml-backend.compatible-mode", false)
+            ));
+            // DJL loads version.properties via Thread.currentThread().getContextClassLoader().getResources()
+            // which defaults to the AppClassLoader (referring to Spigot JAR), not the plugin JAR where the file resides.
+            // so, we override the context ClassLoader to ensure correct resource loading.
+            // See: Platform#detectPlatform, fromSystem, ClassLoaderUtils#getResources
+            thread.setContextClassLoader(getClass().getClassLoader());
             thread.start();
             thread.join();
 

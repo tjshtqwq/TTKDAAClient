@@ -22,26 +22,27 @@ import java.util.List;
 
 public class DJLMLBackend implements MLBackend {
     private final ZooModel<float[][], Float> model;
+    private final boolean compatibleMode;
 
-    public DJLMLBackend(String modelPath) {
+    public DJLMLBackend(String modelPath, boolean compatibleMode) {
         try {
             // zoo/engine provider 由 META-INF/services 定义。虽然插件里有 META-INF/services 文件夹，但Java只认Spigot里的。
             // 所以只得手动创建。
-            ModelZoo.registerModelZoo(new DefaultZooProvider());
+//            ModelZoo.registerModelZoo(new DefaultZooProvider());
 //            ModelZoo.registerModelZoo(new TfZooProvider());
-            Engine.registerEngine(new TfEngineProvider());
+//            Engine.registerEngine(new TfEngineProvider());
 
             model = Criteria.builder()
                     .setTypes(float[][].class, Float.class)
                     .optModelPath(Paths.get(TTKDAAClient.INSTANCE.getDataFolder().getAbsolutePath(), modelPath))
-//                    .optModelPath(Paths.get(modelPath))
                     .optEngine("TensorFlow")
-                    .optTranslator(new FloatArrayTranslator())
+                    .optTranslator(new FloatArrayTranslator(compatibleMode))
                     .build()
                     .loadModel();
         } catch (Exception e) {
             throw new RuntimeException("Failed to load model", e);
         }
+        this.compatibleMode = compatibleMode;
     }
 
     @Override
@@ -50,19 +51,23 @@ public class DJLMLBackend implements MLBackend {
             throw new IllegalArgumentException("input.size() != 100");
         }
 
-        float[] delta = new float[19];
-        for (int i = 1; i < 20; i++) {
-            delta[i - 1] = (float) (data.get(80 + i) - data.get(80 + i - 1));
+        float[] delta = new float[compatibleMode ? 19 : 0];
+        float avg = 0;
+        if (compatibleMode) {
+            for (int i = 1; i < 20; i++) {
+                delta[i - 1] = (float) (data.get(80 + i) - data.get(80 + i - 1));
+            }
+
+            for (float d : delta) avg += d;
+            avg /= 19f;
         }
 
-        float avg = 0;
-        for (float d : delta) avg += d;
-        avg /= 19f;
-
-        float[] fullInput = new float[120];
+        float[] fullInput = new float[compatibleMode ? 120 : 100];
         for (int i = 0; i < 100; i++) fullInput[i] = data.get(i).floatValue();
-        System.arraycopy(delta, 0, fullInput, 100, 19);
-        fullInput[119] = avg;
+        if (compatibleMode) {
+            System.arraycopy(delta, 0, fullInput, 100, 19);
+            fullInput[119] = avg;
+        }
 
         try (Predictor<float[][], Float> predictor = model.newPredictor()) {
             return new AimbotResponse(predictor.predict(new float[][]{fullInput}));
@@ -72,10 +77,16 @@ public class DJLMLBackend implements MLBackend {
     }
 
     private static class FloatArrayTranslator implements Translator<float[][], Float> {
+        private final boolean compatibleMode;
+
+        public FloatArrayTranslator(boolean compatibleMode) {
+            this.compatibleMode = compatibleMode;
+        }
+
         @Override
         public NDList processInput(TranslatorContext ctx, float[][] input) {
             NDArray array = ctx.getNDManager().create(input);
-            array = array.reshape(1, 120, 1); // [B=1, C=120, L=1] god knows why
+            array = array.reshape(1, compatibleMode ? 120 : 100, 1); // [B=1, C=120, L=1] god knows why
             return new NDList(array);
         }
 
