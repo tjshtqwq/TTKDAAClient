@@ -1,6 +1,13 @@
-package me.tjshawa.ttkdaaclient.utils;
+package me.tjshawa.ttkdaaclient.ml.remote;
 
 import com.google.gson.Gson;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NonNull;
+import me.tjshawa.ttkdaaclient.ml.AimbotResponse;
+import me.tjshawa.ttkdaaclient.ml.MLBackend;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -10,34 +17,32 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-public class AimbotDetector {
+@AllArgsConstructor
+public class RemoteMLBackend implements MLBackend {
+    @NonNull @NotNull
+    private final String endpoint;
+    @NonNull @NotNull
+    private final String token;
+
     private static final Gson gson = new Gson();
 
+    @AllArgsConstructor
+    @Getter
     private static class DetectionRequest {
         List<Double> data;
-        String token; // 新增token字段
-
-        DetectionRequest(List<Double> data, String token) {
-            this.data = data;
-            this.token = token; // 初始化token
-        }
+        String token;
     }
 
-
-    // 响应体数据结构
-    public static class DetectionResponse {
-        public String message;
-        public double predicted;
-    }
-
-    public static DetectionResponse predict(List<Double> data, String token, final String SERVER_URL) {
+    @Override
+    @Nullable
+    public AimbotResponse predictAimML(List<Double> data) {
         // 构建请求对象
         DetectionRequest request = new DetectionRequest(data, token);
-        
+
         // 创建HTTP连接
         HttpURLConnection connection = null;
         try {
-            URL url = new URL(SERVER_URL);
+            URL url = new URL(endpoint);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
@@ -56,7 +61,7 @@ public class AimbotDetector {
             int status = connection.getResponseCode();
             if (status == 200) {
                 try (InputStream is = connection.getInputStream(); InputStreamReader isr = new InputStreamReader(is, "UTF-8")) {
-                    DetectionResponse response = gson.fromJson(isr, DetectionResponse.class);
+                   AimbotResponse response = gson.fromJson(isr, AimbotResponse.class);
                     return response;
                 }
             }

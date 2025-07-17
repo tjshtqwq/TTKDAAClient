@@ -14,6 +14,7 @@
   <properties>
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <djl.version>0.32.0</djl.version>
   </properties>
 
   <build>
@@ -37,6 +38,18 @@
             <goals>
               <goal>shade</goal>
             </goals>
+              <configuration>
+                  <relocations>
+                      <relocation>
+                          <pattern>io.github.retrooper.packetevents</pattern>
+                          <shadedPattern>me.tjshawa.ttkdaaclient.shaded.packetevents</shadedPattern>
+                      </relocation>
+                      <relocation>
+                          <pattern>com.github.retrooper.packetevents</pattern>
+                          <shadedPattern>me.tjshawa.ttkdaaclient.shaded.packetevents</shadedPattern>
+                      </relocation>
+                  </relocations>
+              </configuration>
           </execution>
         </executions>
       </plugin>
@@ -79,6 +92,31 @@
         <groupId>com.github.retrooper</groupId>
         <artifactId>packetevents-spigot</artifactId>
         <version>2.7.0</version>
+      </dependency>
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>1.18.34</version>
+          <scope>provided</scope>
+      </dependency>
+
+      <!-- DJL Core API -->
+      <dependency>
+          <groupId>ai.djl</groupId>
+          <artifactId>api</artifactId>
+          <version>${djl.version}</version>
+      </dependency>
+
+      <!-- DJL TensorFlow engine -->
+      <dependency>
+          <groupId>ai.djl.tensorflow</groupId>
+          <artifactId>tensorflow-engine</artifactId>
+          <version>${djl.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>ai.djl.tensorflow</groupId>
+          <artifactId>tensorflow-model-zoo</artifactId>
+          <version>${djl.version}</version>
       </dependency>
   </dependencies>
 </project>

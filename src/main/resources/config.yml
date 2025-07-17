@@ -24,11 +24,25 @@ alert-message: "%prefix% &b%player% &cis using %check% (&7%complex%&c) : &7%mess
 punish: "kick %player% %prefix% Cheating &c(%check%, VL: %vl%)"
 maxvl: 24
 
+# changes made to fields in this section will only take effect after restarting the server.
+ml-backend:
+  type: "remote" # available options: remote (requires TTKDAA server hosted), djl (local)
+  # only matters when 'ml-backend' is set to 'remote'
+  server-url: "114514"
+  server-token: "114514"
+  # only matters when 'ml-backend' is set to 'djl'
+  # the model should be in TensorFlow SavedModel format, which is a directory with weights and model structure files saved separately.
+  # see also: https://www.tensorflow.org/guide/saved_model?hl=zh-cn
+  # guidelines for converting Keras H5 models to SavedModel format: https://www.tensorflow.org/guide/keras/save_and_serialize?hl=zh-cn
+  # you may also use the simple convert.py script for easy conversion, coming with the source code, at the root directory of this project.
+  model-path: "./model" # relative path under the plugin data folder to the model directory (i.e. plugins/TTKDAAClient/{this option})
+  # legacy models may require certain extra parameters to be passed through Input, try to enable this if any error persists
+  # if you're using the latest model, keep this set to false.
+  compatible-mode: false
+
 checks:
   machine-learning-aimbot:
     enabled: true
     collect-data: true
-    server-url: "114514"
-    server-token: "114514"
     buffer: 1.5
     buffer-reduce: 0.5

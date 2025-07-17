@@ -3,7 +3,8 @@ package me.tjshawa.ttkdaaclient.check.impl;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import io.github.retrooper.packetevents.util.SpigotConversionUtil;
-import me.tjshawa.ttkdaaclient.utils.AimbotDetector;
+import me.tjshawa.ttkdaaclient.ml.AimbotResponse;
+import me.tjshawa.ttkdaaclient.ml.MLBackend;
 import me.tjshawa.ttkdaaclient.TTKDAAClient;
 import me.tjshawa.ttkdaaclient.check.Check;
 import me.tjshawa.ttkdaaclient.utils.types.EvictingList;
@@ -122,8 +123,11 @@ public class MachineLearningAimBot extends Check {
 
                         Bukkit.getScheduler().runTaskAsynchronously(TTKDAAClient.INSTANCE, () -> {
                             try {
-                                AimbotDetector.DetectionResponse response = AimbotDetector.predict(combined, TTKDAAClient.configManager.getString("checks.machine-learning-aimbot.server-token"),
-                                        TTKDAAClient.configManager.getString("checks.machine-learning-aimbot.server-url"));
+                                MLBackend backend = TTKDAAClient.INSTANCE.getMLBackend();
+                                if (backend == null) return;
+
+                                AimbotResponse response = backend.predictAimML(combined);
+
                                 if (response != null) {
                                     debug(response.predicted + ", " + buffer);
                                     if (response.predicted > 0.5) {
