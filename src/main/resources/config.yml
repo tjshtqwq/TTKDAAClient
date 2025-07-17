@@ -8,7 +8,8 @@
 ### Author tjshawa
 ### Powered by Hezhong Technology
 
-# Alert权限：
+# 权限：Permissions:
+# tatako.ttkdaa.commands : 命令权限 Permission to use commands.
 
 prefix: "&b&lTTKDAA&f "
 # 管理前缀。Manage prefix.
@@ -20,24 +21,39 @@ prefix: "&b&lTTKDAA&f "
 # %complex% 检查复杂类型
 # %prefix% 前缀
 # (仅alert可用) %message% 违规信息
-alert-message: "%prefix% &b%player% &cis using %check% (&7%complex%&c) : &7%message% &c, VL: %vl%/%maxvl%"
+alert-message: "%prefix% &b%player% &c%message% &7(%complex%) &c %vl%/%maxvl%"
 punish: "kick %player% %prefix% Cheating &c(%check%, VL: %vl%)"
 maxvl: 24
 
 # changes made to fields in this section will only take effect after restarting the server.
 ml-backend:
-  type: "remote" # available options: remote (requires TTKDAA server hosted), djl (local)
-  # only matters when 'ml-backend' is set to 'remote'
+  type: "remote"
+  # Available options: remote (requires TTKDAA server hosted), djl (local)
+  # 可用选项：远程（需要远程TTKDAA服务器）, djl（运行在本地，消耗资源！）
+
+  # Only matters when 'type' is set to 'remote'
+  # 只在type为remote时才生效
   server-url: "114514"
   server-token: "114514"
-  # only matters when 'ml-backend' is set to 'djl'
+
+  # only matters when 'type' is set to 'djl'
   # the model should be in TensorFlow SavedModel format, which is a directory with weights and model structure files saved separately.
   # see also: https://www.tensorflow.org/guide/saved_model?hl=zh-cn
   # guidelines for converting Keras H5 models to SavedModel format: https://www.tensorflow.org/guide/keras/save_and_serialize?hl=zh-cn
   # you may also use the simple convert.py script for easy conversion, coming with the source code, at the root directory of this project.
-  model-path: "./model" # relative path under the plugin data folder to the model directory (i.e. plugins/TTKDAAClient/{this option})
+
+  # 仅在'type'为djl时才生效
+  # 模型应该保存为TensorFlow SavedModel格式，保存为单独的权重文件和模型结构文件。
+  # 可以看：https://www.tensorflow.org/guide/saved_model?hl=zh-cn
+  # 有关将Keras H5模型转换为SavedModel格式的指南：https://www.tensorflow.org/guide/keras/save_and_serialize?hl=zh-cn
+  # 你可以使用 convert.py 脚本来懒人转换，位于此项目的根目录下。
+  model-path: "./model"
+  # relative path under the plugin data folder to the model directory (i.e. plugins/TTKDAAClient/{this option})
   # legacy models may require certain extra parameters to be passed through Input, try to enable this if any error persists
   # if you're using the latest model, keep this set to false.
+  # 模型路径，相对于插件数据文件夹 (例如：plugins/TTKDAAClient/{this option})
+  # 旧模型可能需要通过Input传递某些额外参数，请尝试启用此选项，如果任何错误仍然存在
+  # 如果正在使用最新模型，请保持此选项为false
   compatible-mode: false
 
 checks:
@@ -46,3 +62,23 @@ checks:
     collect-data: true
     buffer: 1.5
     buffer-reduce: 0.5
+  cluster-xray:
+    enabled: true
+    envi-detection-range: 3
+
+    turn-threshold: 10
+    branch-threshold: 6
+    y-change-threshold: 4
+
+    angle-threshold: 30
+    branch-angle-threshold: 60
+
+    air-threshold: 14
+    water-threshold: 14
+    lava-threshold: 14
+
+    cave-air-multiplier: 5
+    max-cluster-distance: 5
+    cluster-threshold: 3
+  autobot-baritone:
+    enabled: true

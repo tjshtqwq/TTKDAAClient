@@ -1,5 +1,7 @@
 package me.tjshawa.ttkdaaclient.manager;
 
+import me.tjshawa.ttkdaaclient.check.impl.AutoBotBaritone;
+import me.tjshawa.ttkdaaclient.check.impl.ClusterXray;
 import me.tjshawa.ttkdaaclient.utils.LoggingUtil;
 import me.tjshawa.ttkdaaclient.check.Check;
 import me.tjshawa.ttkdaaclient.check.GenericPacketHandle;
@@ -15,8 +17,11 @@ public class CheckManager {
     static {
         // ### BASE CHECKS ###
         checks.add(GenericPacketHandle.class);
-        // ### COMBAT CHECKS ###
+        // ### AIMBOT CHECKS ###
         checks.add(MachineLearningAimBot.class);
+        checks.add(AutoBotBaritone.class);
+        // ### XRAY CHECKS ###
+        checks.add(ClusterXray.class);
     }
     public static List<Check> loadChecks(PlayerData data) {
         List<Check> rc = new ArrayList<>();

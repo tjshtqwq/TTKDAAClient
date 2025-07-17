@@ -7,6 +7,7 @@ import lombok.SneakyThrows;
 import me.tjshawa.ttkdaaclient.command.CommandHandler;
 import me.tjshawa.ttkdaaclient.listener.BukkitListener;
 import me.tjshawa.ttkdaaclient.listener.PacketEventsListener;
+import me.tjshawa.ttkdaaclient.manager.CheckManager;
 import me.tjshawa.ttkdaaclient.manager.ConfigManager;
 import me.tjshawa.ttkdaaclient.ml.MLBackend;
 import me.tjshawa.ttkdaaclient.ml.djl.DJLMLBackend;
@@ -27,7 +28,7 @@ public final class TTKDAAClient extends JavaPlugin {
 
     public static String prefix = "&b&lTTKDAA&f ";
     // 检查线程池
-    private final ExecutorService packetExecutor = Executors.newSingleThreadExecutor();
+    public static final ExecutorService packetExecutor = Executors.newSingleThreadExecutor();
 
     @Getter
     private MLBackend mLBackend;
@@ -80,9 +81,13 @@ public final class TTKDAAClient extends JavaPlugin {
 
         PacketEvents.getAPI().init();
         PacketEvents.getAPI().getEventManager().registerListener(new PacketEventsListener(), PacketListenerPriority.MONITOR);
-        Bukkit.getPluginManager().registerEvents(new BukkitListener(), this);
+        getServer().getPluginManager().registerEvents(new BukkitListener(), this);
         // 注册命令
         getCommand("ttkdaa").setExecutor(new CommandHandler());
+        LoggingUtil.logInfo("&cLoaded checks:");
+        for (Class<?> check : CheckManager.checks) {
+            LoggingUtil.logInfo("&b" + check.getSimpleName());
+        }
     }
 
     @Override

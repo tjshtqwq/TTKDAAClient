@@ -22,6 +22,10 @@ public abstract class Check {
         data.violations++;
         AlertUtil.alert(complex, message, this);
     }
+    public void flag(String complex, String message, double vl) {
+        data.violations += vl;
+        AlertUtil.alert(complex, message, this);
+    }
 
     public double reduceBuffer(double a) {
         buffer = Math.max(0, buffer - a);
@@ -40,11 +44,14 @@ public abstract class Check {
 
     public void debug(String ms) {
         if (data.debug) {
-            data.player.sendMessage(ChatColor.translateAlternateColorCodes('&', ms));
+            data.player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b&l" + name + " &7" + ms));
         }
     }
 
     public boolean isEnabled() {
         return TTKDAAClient.configManager.getBoolean("checks." + configName + ".enabled", true);
+    }
+    public long now() {
+        return System.currentTimeMillis();
     }
 }

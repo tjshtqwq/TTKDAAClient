@@ -132,7 +132,7 @@ public class MachineLearningAimBot extends Check {
                                     debug(response.predicted + ", " + buffer);
                                     if (response.predicted > 0.5) {
                                         if (addBuffer2(response.predicted - 0.5) > TTKDAAClient.configManager.getDouble("checks.machine-learning-aimbot.buffer", 1.5)) {
-                                            flag("aim.ml.a", String.format("P=%.2f",  response.predicted * 100));
+                                            flag("aim.ml.a", String.format("rotated machine-like during combat (machine-learning), p=%.2f",  response.predicted * 100));
                                             if (buffer > TTKDAAClient.configManager.getDouble("checks.machine-learning-aimbot.buffer", 1.5) + 0.5) {
                                                 buffer = TTKDAAClient.configManager.getDouble("checks.machine-learning-aimbot.buffer", 1.5) + 0.5;
                                             }
@@ -161,4 +161,3 @@ public class MachineLearningAimBot extends Check {
         }
     }
 }
-

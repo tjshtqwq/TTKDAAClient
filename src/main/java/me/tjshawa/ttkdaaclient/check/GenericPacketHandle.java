@@ -16,7 +16,7 @@ public class GenericPacketHandle extends Check {
         if (event instanceof PacketReceiveEvent) {
             PacketReceiveEvent packetEvent = (PacketReceiveEvent) event;
             if (packetEvent.getPacketType() == PacketType.Play.Client.INTERACT_ENTITY) {
-                WrapperPlayClientInteractEntity entity =  new WrapperPlayClientInteractEntity(packetEvent);
+                WrapperPlayClientInteractEntity entity = new WrapperPlayClientInteractEntity(packetEvent);
                  if (entity.getAction() == WrapperPlayClientInteractEntity.InteractAction.ATTACK) {
                     data.useEntityTicks = 0;
                     data.target = entity.getEntityId();
