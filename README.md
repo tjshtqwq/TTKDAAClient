@@ -1,5 +1,7 @@
-# TTKDAA (Tatako deep-learning anti-aimbot project) Client
+# TTKDAA V1 (Tatako deep-learning anti-aimbot V1 project) Client
 这个仓库是Tatako的子项目，利用深度学习技术与外挂对抗。
+
+## 只支持TTKDAA V1，V2要鸽一会
 
 这是一个反作弊Base，可以再此基础上开发，上面有Tatako的机器学习检测（需要云推理，也就是TTKDAA），在Bukkit上运行。
 
